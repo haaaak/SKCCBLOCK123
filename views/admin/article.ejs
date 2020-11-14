@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<script type="text/javascript">
+  message = '<%=messages%>';
+  if(message)
+window.alert("!!!!!!!!!! ERROR : "+message+ "!!!!!!!!!!!!!");
+</script>
+<body>
+
+  <h1>제목 <%=posts.title %></h1>
+
+  <h6>번호 : <%=posts.articleNum%> &nbsp;&nbsp; 작성자 : <%=posts.creator.nickname%> &nbsp;&nbsp;조회수 : <%=posts.viewCount%></h6>
+  <h6 align='right'><form>  <input type="submit" value='삭제' style="height:25px; font-size:10px"
+    onclick="javascript : form.action = './<%=posts.id%>?_method=DELETE',form.method ='post'">
+
+<a href='/community/update_article/<%=posts.id%>'>수정</a></h6>
+<a href='/community'>뒤로</a></h6>
+</form>
+<!--  <h6 align ='right'><a href="/community/article/delete?id=<%=posts.id%>">삭제</a>-->
+
+<div>
+  <%=posts.content%>
+</div>
+
+  </body>
+  </html>

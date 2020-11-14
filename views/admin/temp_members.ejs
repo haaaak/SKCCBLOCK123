@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script type="text/javascript">
+  message = '<%=messages%>';
+  if(message)
+window.alert('!!!!!!!!!! ERROR : '+message+' !!!!!!!!!!!!!');
+
+function checkConfirm(){
+
+  if(confirm("승인하시겠습니까?")){
+    document.getElementById('formAction').submit();
+  }
+}
+
+
+  function fn_allCheckBox(obj) {
+
+
+var chk=document.getElementsByName(obj);
+    if(allCheckBox.checked){
+
+      for(var i=0;i<chk.length;i++){
+      chk[i].checked=true;
+      }
+    }else{
+      for(var i=0;i<chk.length;i++){
+      chk[i].checked=false;
+    }
+  }
+  }﻿
+</script>
+<body>
+  <style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;color:#333;background-color:#fff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;border-color:#ccc;color:#333;background-color:#f0f0f0;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+
+</style>
+  <h1>게시판</h1>
+
+
+<form action='/temp_members?_method=PUT' method="post" id="formAction">
+  <h5 align ="right">
+    <a href='/members/1'>전체 회원</a>
+
+    <a href='/'>뒤로</a>
+    <a href='/signup'>생성</a>
+  </h5>
+  <div style="height :400px">
+  <table class="tg" width = "800" name=table1>
+    <tr>
+      <th width="10px"><input type="checkbox" name="all_check" id="allCheckBox" onClick="fn_allCheckBox('user_check[]');"/ > </th>
+      <th class="tg-0lax" >번호</th>
+      <th class="tg-0lax">id</th>
+      <th class="tg-0lax">nickname</th>
+      <th class="tg-0lax">가입일</th>
+      <th class="tg-0lax">승인</th>
+    </tr>
+
+    <% for(let user of users) { %>
+    <tr>
+      <% if(user.flag){%>
+      <td><input type="checkbox" name="user_check[]" value='<%=user.id%>' disabled/></td>
+      <%} else{%>
+      <td><input type="checkbox" name="user_check[]" value='<%=user.id%>' /></td>
+      <%}%>
+      <td class="tg-01ax"  ><%= user.userNum%></td>
+      <td class="tg-01ax" ><%= user.userid%></td>
+      <td class="tg-0lax"><%=user.nickname%></td>
+      <td class="tg-0lax"><%= moment(user.created).format('YYYY-MM-DD hh:mm:ss') %></td>
+      <td class="tg-0lax"><%=user.authorization%></td>
+    </tr>
+    <% } %>
+  </table>
+
+  ﻿</form>
+</div>
+  <div style="height :60px">
+  <% if (pages > 0) { %>
+      <ul class="pagination text-center">
+          <% if (current == 1) { %>
+              <li class="disabled"><a>First</a></li>
+          <% } else { %>
+              <li><a href="/temp_members/1">First</a></li>
+          <% } %>
+          <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+          <% if (i !== 1) { %>
+              <li class="disabled"><a>...</a></li>
+          <% } %>
+          <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+              <% if (i == current) { %>
+                  <li class="active"><a><%= i %></a></li>
+              <% } else { %>
+                  <li><a href="/temp_members/<%= i %>"><%= i %></a></li>
+              <% } %>
+              <% if (i == Number(current) + 4 && i < pages) { %>
+                  <li class="disabled"><a>...</a></li>
+              <% } %>
+          <% } %>
+          <% if (current == pages) { %>
+              <li class="disabled"><a>Last</a></li>
+          <% } else { %>
+              <li><a href="/temp_members/<%= pages %>">Last</a></li>
+          <% } %>
+
+      </ul>
+
+  <% } %>
+  <ul class="pagination text-center">
+  <li><a href="#" class="active" onclick="checkConfirm();">  승인</a></li>
+</div  >
+
+</ul>
+</body>
+</html>
