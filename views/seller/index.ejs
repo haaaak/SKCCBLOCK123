@@ -23,7 +23,11 @@
 		
     <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
 </head>
-
+<script type="text/javascript">
+    message = '<%=messages%>';
+    if(message)
+  window.alert('!!!!!!!!!! ERROR : '+message+' !!!!!!!!!!!!!');
+  </script>
 <body>
     <!-- ============================================================== -->
     <!-- main wrapper -->
@@ -133,7 +137,7 @@
                                 </div>
                                 <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
                                 <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
-                                <a class="dropdown-item" href="./signout"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                                <a class="dropdown-item" href="signout"><i class="fas fa-power-off mr-2"></i>Logout</a>
                             </div>
                         </li>
                     </ul>
@@ -175,10 +179,11 @@
                     <div class="ecommerce-widget">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="text-muted">Avg. Revenue Per User</h5>
                                         <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">$28000</h1>
+                                            <h5 class="text-muted">MY BALANCE</h5> <h1 class="mb-1"><%=balance%></h1>
+                                            
                                         </div>
+                                        
                                         
                                     </div>
                                 </div>
@@ -193,75 +198,39 @@
                             <!-- ============================================================== -->
                             <div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12">
                                 <div class="card">
-                                    <h5 class="card-header">Recent Orders</h5>
+                                    <h5 class="card-header">MY BATTERIES</h5>
                                     <div class="card-body p-0">
                                         <div class="table-responsive">
                                             <table class="table">
                                                 <thead class="bg-light">
                                                     <tr class="border-0">
-                                                        <th class="border-0">#</th>
-                                                        <th class="border-0">Image</th>
-                                                        <th class="border-0">Product Name</th>
-                                                        <th class="border-0">Product Id</th>
-                                                        <th class="border-0">Quantity</th>
-                                                        <th class="border-0">Price</th>
-                                                        <th class="border-0">Order Time</th>
-                                                        <th class="border-0">Customer</th>
+                                                        <th class="border-0">NO</th>
+                                                        <th class="border-0">LOT ID</th>
+                                                        <th class="border-0">HASH</th>
+                                                        <th class="border-0">GRADE</th>
+                                                        <th class="border-0">CREATE_DATE</th>
+                                                        <th class="border-0">ORG</th>
                                                         <th class="border-0">Status</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    
                                                     <tr>
-                                                        <td>1</td>
-                                                        <td>
-                                                            <div class="m-r-10"><img src="../common/assets/images/product-pic.jpg" alt="user" class="rounded" width="45"></div>
-                                                        </td>
-                                                        <td>Product #1 </td>
-                                                        <td>id000001 </td>
-                                                        <td>20</td>
-                                                        <td>$80.00</td>
-                                                        <td>27-08-2018 01:22:12</td>
-                                                        <td>Patricia J. King </td>
-                                                        <td><span class="badge-dot badge-brand mr-1"></span>InTransit </td>
+                                                       
+                                                         <% for(var i = 0 ; i< tokenInfo.length;i++) { %>
+                                                            <tr>
+                                                              <td class="tg-01ax" style='width:50px'>&nbsp; <%= i%></td>
+                                                              <td class="tg-0lax"></a><%=tokenId[i] %></td>
+                                                              <td class="tg-0lax"></a><%=tokenInfo[i]._hash %></td>
+                                                              <td class="tg-0lax"></a><%=tokenInfo[i]._grade %></td>
+                                                              <td class="tg-0lax"></a><%=tokenInfo[i]._date %></td>
+                                                              <td class="tg-0lax"></a><%=tokenInfo[i]._org %></td>
+                                                              <td><span class="badge-dot badge-brand mr-1"></span>InTransit </td>
+                                                            </tr>
+                                                            <% } %>
+                                                        
                                                     </tr>
                                                     <tr>
-                                                        <td>2</td>
-                                                        <td>
-                                                            <div class="m-r-10"><img src="../common/assets/images/product-pic-2.jpg" alt="user" class="rounded" width="45"></div>
-                                                        </td>
-                                                        <td>Product #2 </td>
-                                                        <td>id000002 </td>
-                                                        <td>12</td>
-                                                        <td>$180.00</td>
-                                                        <td>25-08-2018 21:12:56</td>
-                                                        <td>Rachel J. Wicker </td>
-                                                        <td><span class="badge-dot badge-success mr-1"></span>Delivered </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>
-                                                            <div class="m-r-10"><img src="../common/assets/images/product-pic-3.jpg" alt="user" class="rounded" width="45"></div>
-                                                        </td>
-                                                        <td>Product #3 </td>
-                                                        <td>id000003 </td>
-                                                        <td>23</td>
-                                                        <td>$820.00</td>
-                                                        <td>24-08-2018 14:12:77</td>
-                                                        <td>Michael K. Ledford </td>
-                                                        <td><span class="badge-dot badge-success mr-1"></span>Delivered </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>4</td>
-                                                        <td>
-                                                            <div class="m-r-10"><img src="../common/assets/images/product-pic-4.jpg" alt="user" class="rounded" width="45"></div>
-                                                        </td>
-                                                        <td>Product #4 </td>
-                                                        <td>id000004 </td>
-                                                        <td>34</td>
-                                                        <td>$340.00</td>
-                                                        <td>23-08-2018 09:12:35</td>
-                                                        <td>Michael K. Ledford </td>
-                                                        <td><span class="badge-dot badge-success mr-1"></span>Delivered </td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="9"><a href="#" class="btn btn-outline-light float-right">View Details</a></td>
@@ -278,21 +247,20 @@
                                     <div class="card">
                                         <h5 class="card-header">File Upload</h5>
                                         <div class="photos-upload-view">
-                                            <form id="upload" action="index.html" method="POST" enctype="multipart/form-data">
-                                                <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="300000" />
-                                                    <div class="agileinfo">
-                                                    <input type="submit" class="choose" value="인증서 올리기">
-                                                    <input type="file" id="fileselect" name="fileselect[]" multiple="multiple" />
-                                                    </div>
+                                            <form id="upload" action="/Seller" method="POST" enctype="multipart/form-data">
+                                                   
+                                                <input type="file" name="userfile"/>
+                                                <input type="submit" value="인증서 올리기">
+                                                
+                                                   
                                             </form>
-                                            <div id="messages">
-                                                <p>Status Messages</p>
-                                            </div>
+                                            <form id="publish" action="/Seller/publish" method="GET">
+                                                   
+                                                <input type="submit" style="margin-bottom: 10px;" value="토큰 발행">
+                                             
+                                            </form>
                                         </div>
                                         <div class="clearfix"></div>
-                                        <script src="../common/assets/libs/js/filedrag.js"></script>
-                                
-                                
                                         </div>
                                
                             

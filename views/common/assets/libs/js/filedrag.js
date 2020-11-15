@@ -14,6 +14,7 @@ Developed by Craig Buckler (@craigbuckler) of OptimalWorks.net
 	// output information
 	function Output(msg) {
 		var m = $id("messages");
+		console.log(msg);
 		m.innerHTML = msg + m.innerHTML;
 	}
 

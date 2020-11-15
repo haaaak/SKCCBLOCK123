@@ -13,16 +13,10 @@ exports.render = function(req, res, next) {
   } else {
     //console.log(req.user.who);
     if(req.user.who){
-      res.render('seller/index', {
-        messages: req.flash('error') || req.flash('info'),
-        user: req.user
-      });}
+      return res.redirect('/Seller');
+    }
       else{console.log(req.user.who);
         res.render('buyer/index', {
-          
-          messages: req.flash('error') || req.flash('info'),
-          user: req.user
-      
 
         });
 

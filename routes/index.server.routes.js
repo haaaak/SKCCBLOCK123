@@ -10,5 +10,4 @@ app.route('/').get(index.render).post(passport.authenticate('local',{
   failureFlash : true
 
 }));
-
 }

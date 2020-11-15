@@ -4,7 +4,7 @@ module.exports=function(app){
 
 app.route('/signup').get(users.renderSignup).post(users.signup);
 
-app.route('/signout').get(users.signout);
+app.route('/Seller/signout').get(users.signout);
 
 app.route('/members/:page').get(users.list);
 app.route('/members').delete(users.multipleDelete);

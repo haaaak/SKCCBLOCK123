@@ -35,5 +35,45 @@ articleNum :{
 });
 
 
+const tokenNFT = new Schema({
 
+
+  tokenId : 
+  {
+    type : String,
+    required : true
+  },
+  
+  hash :
+  {
+  type : String,
+  required : true
+  },
+
+  grade : 
+  {
+    type : String,
+    required : true
+  },
+
+  date :
+  {
+    type : String,
+    default : Date.now
+  },
+
+  org :
+  {
+    type : String,
+    required : true
+  },
+
+  publishedFlag :
+  {
+    type : Boolean,
+    required : true
+  }
+
+});
 mongoose.model('Article',Article);
+mongoose.model('tokenNFT',tokenNFT);
