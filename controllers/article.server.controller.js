@@ -112,12 +112,12 @@ exports.buying = function (req, res) {
                                 from: addressFrom,
                                 gas: 0
                             });
-        const txnCount = await web3.eth.getTransactionCount(addressFrom, "pending")
-        const receipt = await contract_ERC.methods.transfer(addressTo, '50').send({
+        const txnCount = await web3.eth.getTransactionCount(addressBob, "pending")
+        const receipt = await contract_ERC.methods.transfer(addressAlice, '50').send({
             nonce: txnCount,
             gasPrice: 0,
             gasLimit: estimatedGas,
-            from: addressFrom,
+            from: addressBob,
             to : addressContract_ERC
         });
         console.log(`Receipt info:  ${JSON.stringify(receipt.events, null, '\t')}`);
@@ -142,18 +142,18 @@ exports.publish = function (req, res) {
         for (i = 0; i < token.length; i++) {
           console.log(token.length);
           const estimatedGas =
-            await contract_NFT.methods.mintUniqueTokenTo(addressFrom, token[i].tokenId, "temp", token[i].hash, token[i].grade, token[i].date, token[i].org).estimateGas({
+            await contract_NFT.methods.mintUniqueTokenTo(addressAlice, token[i].tokenId, "temp", token[i].hash, token[i].grade, token[i].date, token[i].org).estimateGas({
               from: addressFrom,
               gas: 0
             });
 
-          const txnCount = await web3.eth.getTransactionCount(addressFrom, "pending")
+          const txnCount = await web3.eth.getTransactionCount(addressAlice, "pending")
           const receipt =
-            await contract_NFT.methods.mintUniqueTokenTo(addressFrom, token[i].tokenId, "temp", token[i].hash, token[i].grade, token[i].date, token[i].org).send({
+            await contract_NFT.methods.mintUniqueTokenTo(addressAlice, token[i].tokenId, "temp", token[i].hash, token[i].grade, token[i].date, token[i].org).send({
               nonce: txnCount,
               gasPrice: 0,
               gasLimit: estimatedGas,
-              from: addressFrom,
+              from: addressAlice,
               to: contractAddress_NFT
             });
 
