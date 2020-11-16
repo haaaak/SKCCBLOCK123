@@ -13,8 +13,6 @@ def insert_item_one(mongo, data, db_name=None, collection_name=None):
 mydb = mongo["homepage"]
 mycol = mydb["tokennfts"]
 list = mycol.find()
-#for x in list:
-#       print(x['hash'])
 f = open("hash.txt",'r')
 while True:
         line = f.readline()
