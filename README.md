@@ -49,7 +49,7 @@ express
   3-1. 파일 Upload Section에서 '파일 선택' 클릭 후 Local에 인증서 파일 Upload
   3-2. '파일 업로드' 클릭 후 '토큰 발행' 클릭
 4. Buyer 로그인 후 구매 절차
-  4-1. 
+  4-1. 구매하려는 파일 선택 후 Download 
 ```
 
 ## Deployment / 배포
