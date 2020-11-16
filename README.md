@@ -56,6 +56,12 @@ express
 ## Deployment / 배포
 
 Add additional notes about how to deploy this on a live system / 라이브 시스템을 배포하는 방법
+- 수정된 코드가 Server와 연관이 있는 경우
+  1. 위의 Jenkins를 통한 배포
+  2. OO 서버에 SSH로 접근
+  3. OO 디렉토리에서 'forever stop 0' 이후 'forever start main.js'
+- 수정된 코드가 단순 Html, Css 인 경우
+  1. 위의 Jenkins를 통한 배포
 
 ## Built With / 누구랑 만들었나요?
 
@@ -65,5 +71,3 @@ Add additional notes about how to deploy this on a live system / 라이브 시�
 ## Acknowledgments / 감사의 말
 
 * Hat tip to anyone whose code was used / 코드를 사용한 모든 사용자들에게 팁
-* Inspiration / 영감
-* etc / 기타
