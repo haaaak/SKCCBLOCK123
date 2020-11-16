@@ -9,14 +9,8 @@ One Paragraph of project description goes here / 프로젝트의 전반적인 �
 
 ### Prerequisites / 선행 조건
 
-WEB Server : Ubuntu 16.04(Nginx)
-IPFS Install
-Incron Install
-node js(12) Install
-
-
 ```
-예시
+ddd
 ```
 
 ### Installing / 설치
@@ -24,7 +18,11 @@ node js(12) Install
 아래 사항들로 현 프로젝트에 관한 모듈들을 설치할 수 있습니다.
 
 ```
-예시
+Nginx
+IPFS
+Incron
+Node.js
+express
 ```
 
 ## Running the tests / 테스트의 실행
@@ -42,7 +40,17 @@ node js(12) Install
 ### 테스트는 이런 식으로 작성하시면 됩니다
 
 ```
-예시
+1. Public IP:3000 접속
+2. 로그인
+  2-1. 계정이 없을 경우 Create An Account
+  2-2. 현 테스트 계정
+    2-2-1. Seller : Alice / Password!234
+    2-2-2. Buyer  : Bob   / Password!234
+3. Seller 로그인 후 판매 등록 절차
+  3-1. 파일 Upload Section에서 '파일 선택' 클릭 후 Local에 인증서 파일 Upload
+  3-2. '파일 업로드' 클릭 후 '토큰 발행' 클릭
+4. Buyer 로그인 후 구매 절차
+  4-1. 
 ```
 
 ## Deployment / 배포
@@ -51,16 +59,8 @@ Add additional notes about how to deploy this on a live system / 라이브 시�
 
 ## Built With / 누구랑 만들었나요?
 
-* [이름](링크) - 무엇 무엇을 했어요
+* [이름](링크) - OOO수석, OOO선임 OOO선임
 * [Name](Link) - Create README.md
-
-## Contributiong / 기여
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us. / [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) 를 읽고 이에 맞추어 pull request 를 해주세요.
-
-## License / 라이센스
-
-This project is licensed under the MIT License - see the [LICENSE.md](https://gist.github.com/PurpleBooth/LICENSE.md) file for details / 이 프로젝트는 MIT 라이센스로 라이센스가 부여되어 있습니다. 자세한 내용은 LICENSE.md 파일을 참고하세요.
 
 ## Acknowledgments / 감사의 말
 
