@@ -1,7 +1,7 @@
 # Project Title / OO Battery in Blockchain
 
-**[뱃지나 프로젝트에 관한 이미지들이 이 위치에 들어가면 좋습니다]**  
-One Paragraph of project description goes here / 프로젝트의 전반적인 내용에 대한 요약을 여기에 적습니다
+**[ㅇㅇㅇ]**  
+요약
 
 ## Getting Started / 어떻게 시작하나요?
 
@@ -31,10 +31,9 @@ express
 
 ### 테스트는 이런 식으로 동작합니다
 
-왜 이렇게 동작하는지, 설명합니다
-
 ```
-예시
+1. 판매자 / 구매자 별도의 계정
+2. ~~~
 ```
 
 ### 테스트는 이런 식으로 작성하시면 됩니다
