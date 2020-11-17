@@ -1369,7 +1369,7 @@ Top Header
     padding: 10px 0px;
     line-height: 1.5;
     font-weight: 700;
-    background-color: #5969ff;
+    background-color: #ef7620;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
 }
@@ -4154,15 +4154,15 @@ Pills vertical
     z-index: 2;
     color: #fff;
     text-decoration: none;
-    background-color: #5969ff;
-    border-color: #5969ff;
+    background-color: #ef7620;
+    border-color: #ef7620;
 }
 
 .page-item.active .page-link {
     z-index: 1;
     color: #fff;
-    background-color: #5969ff;
-    border-color: #5969ff;
+    background-color: #ef7620;
+    border-color: #ef7620;
 }
 
 

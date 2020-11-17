@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      message = '<%=messages%>';
+      if(message)
+  window.alert('!!!!!!!!!! ERROR : '+message+' !!!!!!!!!!!!!');
+
+  function redirectPage(){
+    window.location="/";
+  };
+  </script>
+    <form action = "/signup" method="post">
+      <div>
+        <label>USER ID :&nbsp; </label>
+        <input type="text" name="userid">
+        </div>
+        <div>
+          <label>Name&nbsp;&nbsp; : &nbsp;</label>
+          <input type="text" name="nickname">
+          </div>
+        <div>
+          <label>Password : </label>
+          <input type="password" name="password">
+          </div>
+          <div class="custom-control custom-radio custom-color-blue "style="margin-bottom: 10px;">
+            <input type="radio" id="color-1" name="who" value="true" class="custom-control-input" checked>
+            <label class="custom-control-label" for="color-1" style="padding-right: 15px;">Seller</label>
+        </div>
+        
+        <div class="custom-control custom-radio custom-color-blue " style="margin-bottom: 10px;">
+            <input type="radio" id="color-2" name="who" value="false" class="custom-control-input">
+            <label class="custom-control-label" for="color-2">Buyer</label>
+        </div>
+          <div>
+            <input type="submit" value="create">
+            
+            </div>
+            </form>
+            <button id="myButton" class="float-left submit-button" onclick="redirectPage();">back</button>
+            </body>
+            </html>
+
+

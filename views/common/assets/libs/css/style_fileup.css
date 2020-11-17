@@ -118,6 +118,22 @@ input[type="submit"]{
 	align-items: center;
 }
 
+input[type="text"]{
+	width: 60%;
+	padding: 10px 0;
+	font-size:14px;
+	margin-left: 5%;
+	margin-top:10px;
+	align-items: center;
+}
+input[type="number"]{
+	width: 60%;
+    padding: 10px 0;
+	font-size:14px;
+	margin-left: 5%;
+	margin-top:10px;
+	align-items: center;
+}
 input[type="submit"]:disabled{
 	width: 80%;
     background:#2a2a2b;

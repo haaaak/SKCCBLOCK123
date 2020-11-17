@@ -18,8 +18,8 @@ const ipfs = new ipfsClient({
   protocol: 'http'
 });
 
-const ABI_ERC20 = JSON.parse(fs.readFileSync(path.join(__dirname, '../token/ERC20/SampleToken.json'), 'utf-8'));
-const ABI_NFT = JSON.parse(fs.readFileSync(path.join(__dirname, '../token/NFT/BatteryNFT.json'), 'utf-8'));
+const ABI_ERC20 = JSON.parse(fs.readFileSync(path.join(__dirname, '../token/ERC20/build/contracts/BPTToken.json'), 'utf-8'));
+const ABI_NFT = JSON.parse(fs.readFileSync(path.join(__dirname, '../token/NFT/build/contracts/BatteryNFT.json'), 'utf-8'));
 
 const abi_ERC20 = ABI_ERC20.abi;
 const abi_NFT = ABI_NFT.abi;
@@ -27,8 +27,9 @@ const abi_NFT = ABI_NFT.abi;
 const bytecode_ERC20 = ABI_ERC20.bytecode;
 const bytecode_NFT = ABI_NFT.bytecode;
 
-var provider = 'https://besutest.chainz.network';
-const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJwZXJtaXNzaW9ucyI6WyJ3ZWIzOioiLCJuZXQ6KiIsImV0aDoqIiwiZGVidWc6KiIsInR4cG9sOioiLCJlZWE6KiJdLCJleHAiOjE2MDUzMzUwOTZ9.xO3G29-45nokWAnLHVGEsfvECKLqpY4ZBVh8J_8eGNgPRstRd8D_aHouUGKWmv5_rRSEKsqun8uoIFflE-sMCcqEnUKhZusL2VqH3DghQ3iW--pxTTWyKJyXboXnX6XtPqChMtxqCSo_lro-FpcqdYU_S1f3Wv8LUgW-Com_4V3vhZ4X6DvsUyGOK7OUNq35148XH2UaIyDNvvWkqNvm1YD5lPoVS5ndB0IqbGTHZ7EXXRxwEKTYJtp2Ha2XPcJpX-JwSglqmPqCVcCNLVz2nV_hOtyPqGypx_KngE2v33LgGb0ud2QUN2fZWm93pNGv-zbSeZ5RViipjDJbxrl4kg";
+var provider = 'https://besu.chainz.network';
+
+const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJwZXJtaXNzaW9ucyI6WyJuZXQ6KiIsImV0aDoqIiwiZGVidWc6KiIsInR4cG9vbDoqIiwiZWVhOioiXSwiZXhwIjoxNjA3MTQ4MjM0LCJ0ZWFtIjoiMDkifQ.xvVsyGQBD_BKNSleATF6i7vvGOzBMQdloSBLuA66-2OfO1bi-KUrisAWJ2QOK0RicfAb_heIE_FdSqusfqLR6oIqaTbfq6KDprMcJO5rMGKPcYA2btHteYZ9dVd8Cesnz1ZUvOfLr9_KoVYzAcHwIqik_Jaya9wgAw4dVnr5-gA_jiCwoy8EUAeL67OUC48cCukYj7zAdMmYZ2eaMLh5v_DxNJggUuFazLRKBPPTqHFmqG_ppq5ziJg4EmtLCeEDoO9aehrySLN_bQu2Dhu3MYMdrXUpFTrjXRx6KDI8GFoD5SnloGKGdzAY3HosvwpVf9KzLkothYEUHdI5wRCyow";
 
 var options = {
   headers: [{
@@ -40,10 +41,11 @@ var options = {
 var web3 = new Web3(new Web3.providers.HttpProvider(provider, options))
 
 // main net
-const addressContract_ERC = '0x80ec4DD4aF52fA70c2073a72888888d78551F30c';
-const contractAddress_NFT = '0xfB62a2705d77E3a932CF6452af4b48Fe3079Acd6';
+const contractAddress_NFT = '0x80ec4DD4aF52fA70c2073a72888888d78551F30c';
+const contractAddress_ERC = '0x411566d8419C4a69140cb5AF47bf2Da074C19155';
 
-const contract_ERC = new web3.eth.Contract(abi_ERC20, addressContract_ERC);
+
+const contract_ERC = new web3.eth.Contract(abi_ERC20, contractAddress_ERC);
 const contract_NFT = new web3.eth.Contract(abi_NFT, contractAddress_NFT);
 
 const addressAlice = '0x2462c740ef43aa7e251aff3470f5969af2bd8106';
@@ -112,7 +114,7 @@ exports.Slist = async function (req, res, next) {
 
         }
 
-	});
+	}).sort({date : -1});
 
 
   res.render('seller/index', {
@@ -127,13 +129,15 @@ exports.Slist = async function (req, res, next) {
   });
 }
 
-exports.upload_file = function (req, res) {
+exports.upload_file = async function (req, res) {
   console.log(req.file);
   var now = new Date();
  var now = new Date();
   var curTime = (now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate()+':'+now.getHours()+':'+now.getMinutes()).toString();
-  
-  var tokenId = Math.floor(Math.random() * (10000000 - 0));
+  var reqOrg = req.body.org;
+  var reqGrade = req.body.grade; 
+  var tokenId = req.body.id;  
+  var reqPrice = req.body.price;
   var orgName = req.file.originalname;
   var fileBuffer = req.file.buffer;
   //var tokenId = uuidv4().substring(0,3);
@@ -148,13 +152,13 @@ exports.upload_file = function (req, res) {
       ipfsHash=result.path;
       try {
             const estimatedGas = 
-                await contract_NFT.methods.mintUniqueTokenTo(addressAlice, tokenId, tokenUri,ipfsHash ,'AAA',curTime,'SKI').estimateGas({
+                await contract_NFT.methods.mintUniqueTokenTo(addressAlice, tokenId, tokenUri,ipfsHash ,reqGrade,curTime,reqOrg).estimateGas({
                       from: addressAlice,
                       gas: 0
                 });
             const txnCount = await web3.eth.getTransactionCount(addressAlice, "pending")
             const receipt = 
-                await contract_NFT.methods.mintUniqueTokenTo(addressAlice, tokenId, tokenUri,ipfsHash ,'AAA',curTime,'SKI').send({
+                await contract_NFT.methods.mintUniqueTokenTo(addressAlice, tokenId, tokenUri,ipfsHash ,reqGrade,curTime,reqOrg).send({
                     nonce: txnCount,
                     gasPrice: 0,
                     gasLimit: estimatedGas,
@@ -162,7 +166,7 @@ exports.upload_file = function (req, res) {
                     to : contractAddress_NFT
             });
             console.log(`Receipt info:  ${JSON.stringify(receipt.events, null, '\t')}`);
-            tokenNFT.create({tokenId : tokenId , hash : ipfsHash, ownerAddress : addressAlice,grade : 'AAA', date : curTime, org : 'SKI', filename : orgName,  publishedFlag: 0},function(err){
+            await tokenNFT.create({tokenId : tokenId , hash : ipfsHash, ownerAddress : addressAlice,grade : reqGrade, date : curTime, org : reqOrg, filename : orgName, price : reqPrice, publishedFlag: 0},function(err){
           if(err)
           console.log(err);
         });        
@@ -175,20 +179,23 @@ exports.upload_file = function (req, res) {
     console.log("saved");
   })
   //console.log(req.file);
-  res.redirect('/Seller');
+await  res.redirect('/Seller');
 };
 
-exports.buying = function (req, res) {
+exports.buying =async function (req, res) {
  var now = new Date();
 var curTime = (now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate()+':'+now.getHours()+':'+now.getMinutes()).toString();
   console.log(req.body);
   var tokenRCV = req.body;
-  // console.log(tokenRCV.tokenId);
-  tokenNFT.findOne({
+  var messages;  
+
+  await tokenNFT.findOne({
     tokenId: tokenRCV.tokenId
   }, async function (err, token) {
     var hashFromMain = await contract_NFT.methods.hashByToken(token.tokenId).call();
-    console.log(hashFromMain);
+
+	messages = ('Main Net' + hashFromMain+'\n'+'Hash'+token.hash).toString();
+    console.log(messages);
    for await(const file of ipfs.get(hashFromMain)){
 if(!file.content) continue;
 const content = [];
@@ -197,37 +204,43 @@ for await(const chunk of file.content)
 {
 content.push(chunk)
 }
-console.log(content);
+//console.log(content);
 };
- console.log(token.hash);
+// console.log(token.hash);
     if (hashFromMain == token.hash) {
       try {
-        const estimatedGas = await contract_ERC.methods.transfer(addressAlice, '50').estimateGas({
+	var messages = ('Main Net' + hashFromMain+'\n'+'Hash'+token.hash).toString();
+        req.flash('errpr',messages);
+	//var messages = ('Main Net' + hashFromMain+'\n'+'Hash'+token.hash).toString();
+        const estimatedGas = await contract_ERC.methods.transfer(addressAlice, tokenRCV.tokenPrice).estimateGas({
           from: addressFrom,
           gas: 0
         });
         const txnCount = await web3.eth.getTransactionCount(addressBob, "pending")
-        const receipt = await contract_ERC.methods.transfer(addressAlice, '50').send({
+        const receipt = await contract_ERC.methods.transfer(addressAlice, tokenRCV.tokenPrice).send({
           nonce: txnCount,
           gasPrice: 0,
           gasLimit: estimatedGas,
           from: addressBob,
-          to: addressContract_ERC
+          to: contractAddress_ERC
         });
         console.log(`Receipt info:  ${JSON.stringify(receipt.events, null, '\t')}`);
       } catch (err) {
         return console.log(err);
       };
-        await tokenTrade.create({ tokenId : token.tokenId , tokenNFTHash : token.hash , price:'50',date : curTime, buyer : addressBob, seller : addressAlice}, function(err){
+        await tokenTrade.create({ tokenId : token.tokenId , tokenNFTHash : token.hash , price:tokenRCV.tokenPrice,date : curTime, buyer : addressBob, seller : addressAlice}, function(err){
 if(err)
 console.log(err);});
 	await tokenNFT.updateOne({ tokenId : token.tokenId}, {publishedFlag:1,buyerAddress : addressBob}, function(err)
        {
 	if(err)
-	return console.log(err)});
-    }
-  });
-  res.redirect('/Buyer');
+	return console.log(err)
+	else	
+        res.redirect('/Buyer');
+   }); }
+ })
+
+
 };
 
 exports.publish = function (req, res) {
@@ -319,7 +332,8 @@ for(var i = 0 ; i<tokenInfoDB.length;i++)
 
 res.render('./buyer/index',{
 InfoFromDB:tokenInfoDB,
-InfoFromBlock:arrTokenInfo});
+InfoFromBlock:arrTokenInfo,
+message : null});
 });
 }
 

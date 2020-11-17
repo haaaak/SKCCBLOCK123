@@ -22,7 +22,7 @@
 		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
 		
-    <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
+   <title>BIB - Battery in Blockchain</title>
 </head>
 <script type="text/javascript">
     message = '<%=messages%>';
@@ -39,7 +39,7 @@
         <!-- ============================================================== -->
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="index.html">Concept</a>
+                <a class="navbar-brand" href="index.html">BIB - Battery in Blockchain</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -55,7 +55,7 @@
                             <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
                                 <li>
                                     <div class="notification-title"> Notification</div>
-                                    <div class="notification-list">
+<!--                                    <div class="notification-list">
                                         <div class="list-group">
                                             <a href="#" class="list-group-item list-group-item-action active">
                                                 <div class="notification-info">
@@ -90,7 +90,7 @@
                                                 </div>
                                             </a>
                                         </div>
-                                    </div>
+                                    </div>-->
                                 </li>
                                 <li>
                                     <div class="list-footer"> <a href="#">View all notifications</a></div>
@@ -100,7 +100,7 @@
                         <li class="nav-item dropdown connection">
                             <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-fw fa-th"></i> </a>
                             <ul class="dropdown-menu dropdown-menu-right connection-dropdown">
-                                <li class="connection-list">
+<!--                                <li class="connection-list">
                                     <div class="row">
                                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
                                             <a href="#" class="connection-item"><img src="../common/assets/images/github.png" alt="" > <span>Github</span></a>
@@ -126,14 +126,14 @@
                                 </li>
                                 <li>
                                     <div class="conntection-footer"><a href="#">More</a></div>
-                                </li>
+                                </li>-->
                             </ul>
                         </li>
                         <li class="nav-item dropdown nav-user">
                             <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../common/assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
-                                    <h5 class="mb-0 text-white nav-user-name">John Abraham </h5>
+                                    <h5 class="mb-0 text-white nav-user-name">Alice</h5>
                                     <span class="status"></span><span class="ml-2">Available</span>
                                 </div>
                                 <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
@@ -160,7 +160,7 @@
                     <!-- ============================================================== -->
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div class="page-header">
+<!--                            <div class="page-header">
                                 <h2 class="pageheader-title">E-commerce Dashboard Template </h2>
                                 <p class="pageheader-text">Nulla euismod urna eros, sit amet scelerisque torton lectus vel mauris facilisis faucibus at enim quis massa lobortis rutrum.</p>
                                 <div class="page-breadcrumb">
@@ -171,7 +171,7 @@
                                         </ol>
                                     </nav>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                     <!-- ============================================================== -->
@@ -181,7 +181,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="metric-value d-inline-block" style = "float:left;">
-                                            <h5 class="text-muted">MY BALANCE</h5> <h1 class="mb-1"><%=balance%></h1>
+                                            <h5 class="text-muted">MY WALLET</h5> <h1 class="mb-1"><%=balance%></h1>
                                             
                                         </div>
                                         
@@ -282,20 +282,22 @@
                             <!-- ============================================================== -->
                             <!-- end recent orders  -->
                             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <div class="card">
+                                    <div class="card" st>
                                         <h5 class="card-header">File Upload</h5>
                                         <div class="photos-upload-view">
                                             <form id="upload" action="/Seller" method="POST" enctype="multipart/form-data">
-                                                   
+						<label style="margin-left:20px;">ID&nbsp; :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>  
+                                                <input type="number" name="id" required/>
+						<label style="margin-left:10px;">ORG&nbsp; :&nbsp;&nbsp;&nbsp;&nbsp;</label>  
+                                                <input type="text" name="org" required/>
+						<label style="margin-left:8px;">GRADE&nbsp; :</label>  
+						<input type="text" name="grade" required/>
+						<label style="margin-left:8px;">PRICE&nbsp; :&nbsp;&nbsp;</label>  
+						<input type="number" name="price" required/>
                                                 <input type="file" name="userfile"/>
-                                                <input type="submit"  value="인증서 올리기">
+                                                <input type="submit"  value="토큰 발행">
                                                 
                                                    
-                                            </form>
-                                            <form id="publish" action="/Seller/publish" method="GET">
-                                                   
-                                                <input type="submit" style="margin-bottom: 10px;" value="토큰 발행">
-                                             
                                             </form>
                                         </div>
                                         <div class="clearfix"></div>
