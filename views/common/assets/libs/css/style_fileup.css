@@ -107,7 +107,7 @@ h3{
 }
 input[type="submit"]{
     width: 80%;
-    background:#007bff;
+    background:#ef7620;
     border: none;
     padding: 10px 0;
     color: #fff;
@@ -117,6 +117,22 @@ input[type="submit"]{
 	margin-top:10px;
 	align-items: center;
 }
+
+input[type="submit"]:disabled{
+	width: 80%;
+    background:#2a2a2b;
+    border: none;
+    padding: 10px 0;
+    color: #fff;
+	font-size:14px;
+	cursor:not-allowed;
+	margin-left: 10%;
+	margin-top:10px;
+	align-items: center;
+	
+	
+	
+} 
 .footer p{
 	text-align:center;
 	color:#fff;

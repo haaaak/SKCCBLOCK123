@@ -1,72 +1,49 @@
 # Project Title / OO Battery in Blockchain
 
-**[ㅇㅇㅇ]**  
-요약
+## BIB (Battery In Blockchain) 서비스
+IPFS+Blockchain 플랫폼에서 Battery 인증서의 진위여부와 거래를 제공해 주는 서비스..
 
-## Getting Started / 어떻게 시작하나요?
+#### Basic Architecture
 
-이 곳에서 설치에 관련된 이야기를 해주시면 좋습니다.
+<img src="images/bib_architecture.png" alt="bib_001" style="zoom:50%;" />
 
-### Prerequisites / 선행 조건
+- BIB
+Battery 관련 정보를 등록하고, 구매자와 판매자 페이지를 통해 구매/소유권 이전과 같은 서비스를 제공하는 웹서버.
 
-```
-ddd
-```
+- Mainnet
+각 Battery별 NFT (ERC721기반)를 생성 / 관리하며, 거래에 따른 Token (ERC20기반) 보상 서비스를 제공하는 이더리움 블록체인.
 
-### Installing / 설치
+- IPFS
+Battery의 인증서 파일을 저장 관리하는 분산 파일시스템.
 
-아래 사항들로 현 프로젝트에 관한 모듈들을 설치할 수 있습니다.
 
-```
-Nginx
-IPFS
-Incron
-Node.js
-express
-```
+### 서비스 구조
 
-## Running the tests / 테스트의 실행
+![bib_111](images/bib_service_flow.png)
 
-어떻게 테스트가 이 시스템에서 돌아가는지에 대한 설명을 합니다
+### Application 
 
-### 테스트는 이런 식으로 동작합니다
+판매자 UI
+<img src="images/seller_page.png" alt="bib_001" style="zoom:50%;" />
 
-```
-1. 판매자 / 구매자 별도의 계정
-2. ~~~
-```
+구매자 UI
+<img src="images/buyer_page.png" alt="bib_001" style="zoom:50%;" />
 
-### 테스트는 이런 식으로 작성하시면 됩니다
+### 모듈 설명 (상세)
 
-```
-1. Public IP:3000 접속
-2. 로그인
-  2-1. 계정이 없을 경우 Create An Account
-  2-2. 현 테스트 계정
-    2-2-1. Seller : Alice / Password!234
-    2-2-2. Buyer  : Bob   / Password!234
-3. Seller 로그인 후 판매 등록 절차
-  3-1. 파일 Upload Section에서 '파일 선택' 클릭 후 Local에 인증서 파일 Upload
-  3-2. '파일 업로드' 클릭 후 '토큰 발행' 클릭
-4. Buyer 로그인 후 구매 절차
-  4-1. 구매하려는 파일 선택 후 Download 
-```
+* Smart Contract
+   - [Battery NFT](./token/NFT/README.md)
+   - [BPT 토큰](./token/ERC20/README.md)
+* [IPFS](./makeipfs/ipfs_network.md)
+* [BIB](./BIB.md)
 
-## Deployment / 배포
 
-Add additional notes about how to deploy this on a live system / 라이브 시스템을 배포하는 방법
-- 수정된 코드가 Server와 연관이 있는 경우
-  1. 위의 Jenkins를 통한 배포
-  2. OO 서버에 SSH로 접근
-  3. OO 디렉토리에서 'forever stop 0' 이후 'forever start main.js'
-- 수정된 코드가 단순 Html, Css 인 경우
-  1. 위의 Jenkins를 통한 배포
+## Contributor
 
-## Built With / 누구랑 만들었나요?
+* 오세진수석  
+* 정재학선임 
+* 이상호선임
 
-* [이름](링크) - OOO수석, OOO선임 OOO선임
-* [Name](Link) - Create README.md
-
-## Acknowledgments / 감사의 말
+## Acknowledgments 
 
 * Hat tip to anyone whose code was used / 코드를 사용한 모든 사용자들에게 팁

@@ -26,9 +26,10 @@ app.use(session({
   resave : 'false',
   saveUninitialized : true
 }));
-require('../models/count.server.model.js');
+
 require('../models/user.server.model.js');
-require('../models/article.server.model.js');
+require('../models/token.server.model.js');
+require('../models/count.server.model.js');
 
 app.use(methodOverride('_method'));
 app.use(passport.initialize());
@@ -40,6 +41,6 @@ app.set('view engine','ejs');
 
 require('../routes/user.server.routes.js')(app);
 require('../routes/index.server.routes.js')(app);
-require('../routes/article.server.routes.js')(app);
+require('../routes/token.server.routes.js')(app);
 return app;
 };

@@ -1,5 +1,4 @@
-var User = require('mongoose').model('User'),
-    Article = require('mongoose').model('Article');
+var User = require('mongoose').model('User');
 
 exports.render = function(req, res, next) {
 
@@ -16,9 +15,7 @@ exports.render = function(req, res, next) {
       return res.redirect('/Seller');
     }
       else{console.log(req.user.who);
-        res.render('buyer/index', {
-
-        });
+        res.redirect('/Buyer');
 
 
         }

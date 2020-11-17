@@ -43,7 +43,11 @@ const tokenNFT = new Schema({
     type : String,
     required : true
   },
-  
+  filename : 
+  {
+    type : String,
+    required : true
+  },
   hash :
   {
   type : String,
@@ -55,7 +59,11 @@ const tokenNFT = new Schema({
     type : String,
     required : true
   },
-
+  ownerAddress :
+  {
+    type : String,
+    required : true
+  },
   date :
   {
     type : String,
@@ -70,8 +78,13 @@ const tokenNFT = new Schema({
 
   publishedFlag :
   {
-    type : Boolean,
+    type : Number,
     required : true
+  },
+  buyerAddress : 
+  {
+    type : String,
+    required : false
   }
 
 });

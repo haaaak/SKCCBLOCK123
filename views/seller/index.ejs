@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
  
@@ -21,7 +22,7 @@
 		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
 		
-    <title>BIB - Battery in Blockchain</title>
+    <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
 </head>
 <script type="text/javascript">
     message = '<%=messages%>';
@@ -38,7 +39,7 @@
         <!-- ============================================================== -->
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="index.html">Battery in Blockchain</a>
+                <a class="navbar-brand" href="index.html">Concept</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -99,7 +100,7 @@
                         <li class="nav-item dropdown connection">
                             <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-fw fa-th"></i> </a>
                             <ul class="dropdown-menu dropdown-menu-right connection-dropdown">
-                                <!--<li class="connection-list">
+                                <li class="connection-list">
                                     <div class="row">
                                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
                                             <a href="#" class="connection-item"><img src="../common/assets/images/github.png" alt="" > <span>Github</span></a>
@@ -125,7 +126,7 @@
                                 </li>
                                 <li>
                                     <div class="conntection-footer"><a href="#">More</a></div>
-                                </li>-->
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown nav-user">
@@ -137,7 +138,7 @@
                                 </div>
                                 <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
                                 <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
-                                <a class="dropdown-item" href="signout"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                                <a class="dropdown-item" href="/signout"><i class="fas fa-power-off mr-2"></i>Logout</a>
                             </div>
                         </li>
                     </ul>
@@ -160,7 +161,7 @@
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
-                                <h2 class="pageheader-title">Battery in Blockchain </h2>
+                                <h2 class="pageheader-title">E-commerce Dashboard Template </h2>
                                 <p class="pageheader-text">Nulla euismod urna eros, sit amet scelerisque torton lectus vel mauris facilisis faucibus at enim quis massa lobortis rutrum.</p>
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
@@ -179,12 +180,43 @@
                     <div class="ecommerce-widget">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="metric-value d-inline-block">
-                                            <h5 class="text-muted">MY Wallet</h5> <h1 class="mb-1"><%=balance%></h1>
+                                        <div class="metric-value d-inline-block" style = "float:left;">
+                                            <h5 class="text-muted">MY BALANCE</h5> <h1 class="mb-1"><%=balance%></h1>
                                             
                                         </div>
                                         
+                                        <div class="metric-value d-inline-block" style = "float:left; margin-left:180px">
                                         
+                                            <h5 class="text-muted">Recent Transaction History</h5>
+                                            <table class="table">
+						<thead class="bg-light">
+						<tr class="border-0">
+						<th class="border-0">NO</th>
+						<th class="border-0">ID</th>	
+						<th class="border-0">PRICE</th>	
+						<th class="border-0">HASH</th>	
+						<th class="border-0">DATE</th>	
+						<th class="border-0">BUYER</th>	
+						</tr>
+						</thead>
+
+						<tbody>
+						<% if(trsInfo.length>5) {%>
+						<% var length = 4; %>
+                                                <%} else{ var length = trsInfo.length; }%> 
+						<% for(var i = 0 ; i< length;i++){ %>  
+						<tr>
+						<td class="tg-01ax" style='width:50px'>&nbsp; <%=i+1%></td>
+						<td class="tg-01ax" style='width:50px'>&nbsp; <%=trsInfo[i].tokenId%></td>
+						<td class="tg-01ax" style='width:50px'>&nbsp; <%=trsInfo[i].price%></td>
+						<td class="tg-01ax" style='width:50px'>&nbsp; <%=trsInfo[i].tokenNFTHash%></td>
+						<td class="tg-01ax" style='width:50px'>&nbsp; <%=trsInfo[i].date%></td>
+						<td class="tg-01ax" style='width:50px'>&nbsp; <%=trsInfo[i].buyer%></td>
+                                                <% } %>
+						</tr>
+						</tbody>
+						</table>
+					</div>
                                     </div>
                                 </div>
                           
@@ -222,12 +254,15 @@
                                                             <tr>
                                                               <td class="tg-01ax" style='width:50px'>&nbsp; <%= i%></td>
                                                               <td><input type="hidden" class="tg-0lax"id="tokenId" name = "tokenId" value= <%=tokenId[i]%>><%=tokenId[i] %></td>
-                                                              <td><input type="hidden" class="tg-0lax"id="tokenId" name = "hash" value= <%=tokenInfo[i]._hash%>><%=tokenInfo[i]._hash %></td>
-                                                              <td><input type="hidden" class="tg-0lax"id="tokenId" name = "grade" value= <%=tokenInfo[i]._grade%>><%=tokenInfo[i]._grade %></td>
-                                                              <td><input type="hidden" class="tg-0lax"id="tokenId" name = "date" value= <%=tokenInfo[i]._date%>><%=tokenInfo[i]._date %></td>
-                                                              <td><input type="hidden" class="tg-0lax"id="tokenId" name = "org" value= <%=tokenInfo[i]._org%>><%=tokenInfo[i]._org %></td>
-                                                              
-                                                              <td><input type="submit" value="SEND"> </td>
+                                                              <td><input type="hidden" class="tg-0lax"id="tokenHash" name = "hash" value= <%=tokenInfo[i]._hash%>><%=tokenInfo[i]._hash %></td>
+                                                              <td><input type="hidden" class="tg-0lax"id="tokenGrade" name = "grade" value= <%=tokenInfo[i]._grade%>><%=tokenInfo[i]._grade %></td>
+                                                              <td><input type="hidden" class="tg-0lax"id="tokenDate" name = "date" value= <%=tokenInfo[i]._date%>><%=tokenInfo[i]._date %></td>
+                                                              <td><input type="hidden" class="tg-0lax"id="tokenOrg" name = "org" value= <%=tokenInfo[i]._org%>><%=tokenInfo[i]._org %></td>
+                                                              <% if (tradeFlag[i] >=1) { %>
+                                                                <td><input type="submit"  value="SEND"> </td>
+                                                              <% } else {%>
+                                                              <td><input type="submit"  disabled="disabled" value="SEND"> </td>
+                                                              <% } %>
                                                             </tr>
                                                         </form>
                                                             <% } %>
@@ -253,7 +288,7 @@
                                             <form id="upload" action="/Seller" method="POST" enctype="multipart/form-data">
                                                    
                                                 <input type="file" name="userfile"/>
-                                                <input type="submit" value="인증서 올리기">
+                                                <input type="submit"  value="인증서 올리기">
                                                 
                                                    
                                             </form>

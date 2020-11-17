@@ -1241,7 +1241,7 @@ Top Header
     font-size: 30px;
     text-transform: uppercase;
     font-weight: 700;
-    color: #007bff;
+    color: #ef7620;
 }
 .navbar-brand:hover{
     color: #007bff;
@@ -1469,7 +1469,7 @@ Top Header
 .nav-user-name {}
 
 .nav-user-info {
-    background-color: #5969ff;
+    background-color: #ef7620;
     line-height: 1.4;
     padding: 12px;
     color: #fff;
@@ -1974,7 +1974,7 @@ Splash Container / Wrapper
     font-size: 1rem;
     margin-top: 5px;
     padding-bottom: 10px;
-    color: #8b98e2;
+    color: #ef7620;
 }
 
 .splash-title {
@@ -2654,8 +2654,8 @@ clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 
 
 .btn-primary {
     color: #fff;
-    background-color: #5969ff;
-    border-color: #5969ff;
+    background-color: #ef7620;
+    border-color: #ef7620;
 }
 
 .btn-primary:hover {
