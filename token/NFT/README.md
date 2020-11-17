@@ -1,27 +1,35 @@
-## Install
-```javascript
-$ mkdir project
-$ cd project
-$ cp ~/Download/package.json ./
-$ cp ~/Download/tokenMint.js ./
-$ cp ~/Download/tokenMonitor.js ./
-$ cp ~/Download/tokenChangeOwner.js ./
-$ cp ~/Download/BatteryNFT.json ./
-$ npm install
+## Install  
+    $ npm install  
+## Compile  
+	$ truffle compile  
+## Deploy 
+스마트컨트랙트 배포는 아래 2가지 중 하나를 선택하면 됨.  
 
+(1) [메인넷 연결 및 트랜잭션 확인 방법](https://myshare.skcc.com/pages/viewpage.action?pageId=100087203)
 ```
+$ truffle migrate --network besu
+```
+(2) Script 를 통해 배포
+```	
+$ node deployContract.js
+```	
 
 ## Information
 - Account
   
 |User|Address|Private Key|
 |---|---|---|
-| Alice | 0x2462c740ef43aa7e251aff3470f5969af2bd8106 | 0x925efbc2aaf2e2292258688c29e155f65b9b63a8f46b195de0ad90c2b57f0d49 |
-| Bob | 0x6c9ce229253612b91b148f8173ce835202ae334a | 0x1d69431b3c2380c7cb8fad628415ae167d94ce3617c127510ab6944aaaab5908 |
+| 판매자 | 0x2462c740ef43aa7e251aff3470f5969af2bd8106 | 0x925efbc2aaf2e2292258688c29e155f65b9b63a8f46b195de0ad90c2b57f0d49 |
+| 구매자 | 0x6c9ce229253612b91b148f8173ce835202ae334a | 0x1d69431b3c2380c7cb8fad628415ae167d94ce3617c127510ab6944aaaab5908 |
 
-- Battery NFT Smartcontract Address : 0xfB62a2705d77E3a932CF6452af4b48Fe3079Acd6
-## Files
-**tokenMint.js**
+- Battery NFT Smartcontract Address : **0x80ec4DD4aF52fA70c2073a72888888d78551F30c**    
+
+- Data structure    
+  |Key|Value|
+  |:---|:---|
+  |tokenId| hash: 인증서해쉬값,<br> grade: 등급,<br> date: 일자,<br> org: 기관<br> |
+
+## Method      
 Create Battery NFT
 ```javascript
 contract.methods.mintUniqueTokenTo(
@@ -34,17 +42,15 @@ contract.methods.mintUniqueTokenTo(
       org            // Organazation
    );
 ```
-
-**tokenOwnerChange.js**
-Change Owner of Batter NFT
+Change Owner of Batter NFT   
 ```javascript
 contract.methods.transferFrom(
    addressFrom,   // Seller
    addressTo,     // Buyer
    tokenId
    );
-```
-**tokenMonitor.js**
+```   
+   
 Retrieve Batter NFT information 
 ```javascript
 contract.methods.ownerOf(tokenId).call();
@@ -60,73 +66,44 @@ contract.methods.tokenByOwner(addressFrom).call()
   return (tokenId[])  // all tokenIds of addressFrom ex.) 111111,333333
 ```
 
-*) Files are working on a Testnet not a Mainnet
-   Testnet : https://besutest.chainz.network 
-
 ## Test
 
-$ node tokenMint.js
+3개의 tokenid 를 생성 (테스트 정보 포함)
 ```javascript
+$ node tokenMint.js
+
 Receipt info:  {
 	"Transfer": {
-		"address": "0xfB62a2705d77E3a932CF6452af4b48Fe3079Acd6",
-		"blockNumber": 4287845,
-		"transactionHash": "0x6536c7549b2a8662555ba0134e4703b54f71f6591970051eb59068d5ea88ed3b",
+		"address": "0x80ec4DD4aF52fA70c2073a72888888d78551F30c",
+		"blockNumber": 3334181,
+		"transactionHash": "0x65fe59d370a3934fbbea7d86792c2dd18243a2f6cafb0afb3122010ba6821800",
 		"transactionIndex": 0,
-		"blockHash": "0x324b1d9eb2d16cd3f85c21f7a1f7ab6d210112986566663f01d145ed0743c94e",
-		"logIndex": 0,
-		"removed": false,
-		"id": "log_431d299d",
-		"returnValues": {
-			"0": "0x0000000000000000000000000000000000000000",
-			"1": "0x2462c740ef43aa7E251afF3470f5969aF2bd8106",
-			"2": "111111",
-			"from": "0x0000000000000000000000000000000000000000",
-			"to": "0x2462c740ef43aa7E251afF3470f5969aF2bd8106",
-			"tokenId": "111111"
-		},
-         ...
+		"blockHash": "0x3ff1ca21ac27cad00188cbb62e2eaefac6bf59b7e9a3a2f2b1876417321bfa76",
+		…
+
 Receipt info:  {
 	"Transfer": {
-		"address": "0xfB62a2705d77E3a932CF6452af4b48Fe3079Acd6",
-		"blockNumber": 4287846,
-		"transactionHash": "0x3fa515c34d48675614c84d56cd8d3cd50856aa56258c57af954e6f839cea9590",
+		"address": "0x80ec4DD4aF52fA70c2073a72888888d78551F30c",
+		"blockNumber": 3334182,
+		"transactionHash": "0x46763f3d112b785da6bcf73f8ac40a6e99115db8766867f425c51cb4c0ad21e8",
 		"transactionIndex": 0,
-		"blockHash": "0xf60656a0bd846f536a82a11dc7b7348b76ccc4f6d03965ea0013d22abaf29e88",
-		"logIndex": 0,
-		"removed": false,
-		"id": "log_fa7846d6",
-		"returnValues": {
-			"0": "0x0000000000000000000000000000000000000000",
-			"1": "0x2462c740ef43aa7E251afF3470f5969aF2bd8106",
-			"2": "222222",
-			"from": "0x0000000000000000000000000000000000000000",
-			"to": "0x2462c740ef43aa7E251afF3470f5969aF2bd8106",
-			"tokenId": "222222"
-      },
-      ...
+		"blockHash": "0x7a9694993f235d58c7d72d9e0f95bc2a2385796b48453d38a7580d4580f680bc",
+		…
+
 Receipt info:  {
 	"Transfer": {
-		"address": "0xfB62a2705d77E3a932CF6452af4b48Fe3079Acd6",
-		"blockNumber": 4287847,
-		"transactionHash": "0xd73e6e20821b154929b0988ef8d77f8df1b29b50461aeb99973ce8dbf5b7b59c",
+		"address": "0x80ec4DD4aF52fA70c2073a72888888d78551F30c",
+		"blockNumber": 3334183,
+		"transactionHash": "0xfeccbcbfd444affc94fd26d4ad158d15146ecf0bb5321fbacccb2e0c0aea0ebb",
 		"transactionIndex": 0,
-		"blockHash": "0xb1de5efd16aaab3b8a0355b9700ea3b63b006abf8c700221e3019d49da0d1596",
-		"logIndex": 0,
-		"removed": false,
-		"id": "log_b61c3e11",
-		"returnValues": {
-			"0": "0x0000000000000000000000000000000000000000",
-			"1": "0x2462c740ef43aa7E251afF3470f5969aF2bd8106",
-			"2": "333333",
-			"from": "0x0000000000000000000000000000000000000000",
-			"to": "0x2462c740ef43aa7E251afF3470f5969aF2bd8106",
-			"tokenId": "333333"
-      },
+		"blockHash": "0x411dbf0b0e7d87d7f9905f6dd4ad2eca2f5b734110bf4403c6c7f674edc4faf2",
       ...
 ```
-$ node tokenMonitor.js
+
+발행된 NFT 정보를 조회 
 ```javascript
+$ node tokenMonitor.js
+
 NFT Name  : Battery Token
 NFT Symbol: BDC
 Total Num. of TokenID: 3
@@ -152,20 +129,21 @@ tokenID(222222) Info: QmNZgiQKaEQsgXzznsXnHp3WiFFsxeSX7zM9cGfXcoVxYx,BBB,2020.07
                        ---------------------------------------------------
 tokenID(333333) Info: QmNZgiQKaEQsgXzznsXnHp3WiFFsxeSX7zM9cGfXcoVxZx,CCC,2020.08.25,SKCC
                        ---------------------------------------------------
-
+```
+Token ID (222222)의 owner를 Alice에서 Bob으로 변경 
 ```
 $ node tokenOwnerChange.js
-```
+
 Receipt info:  {
 	"Approval": {
-		"address": "0xfB62a2705d77E3a932CF6452af4b48Fe3079Acd6",
-		"blockNumber": 4288061,
-		"transactionHash": "0x755b6262b5355a7636f33ecf6414d31d5f6300e7348712c6332f8751d1f6499c",
+		"address": "0x80ec4DD4aF52fA70c2073a72888888d78551F30c",
+		"blockNumber": 3334384,
+		"transactionHash": "0xac63a4be2212ab298d1d678c5dab355779f897c155a0cee3f89db57640e2917c",
 		"transactionIndex": 0,
-		"blockHash": "0x81f6a8d236e8900214067989fa1f231bd33b899daab334425ee482c03b43082d",
+		"blockHash": "0x8af7c49523c532e5b9ead5fd49bf359e64cd2834721c9279a758c7ded664ec54",
 		"logIndex": 0,
 		"removed": false,
-		"id": "log_8e3b337e",
+		"id": "log_f3444a1c",
 		"returnValues": {
 			"0": "0x2462c740ef43aa7E251afF3470f5969aF2bd8106",
 			"1": "0x0000000000000000000000000000000000000000",
@@ -175,8 +153,10 @@ Receipt info:  {
 			"tokenId": "222222"
 		},
 ```
-$ node tokenMonitor.js
+token id 222222의 owner가 판매자(Alice)에서 구매자 (Bob)로 변경됨을 확인.
 ```javascript
+$ node tokenMonitor.js 
+
 NFT Name  : Battery Token
 NFT Symbol: BDC
 Total Num. of TokenID: 3

@@ -21,32 +21,50 @@ var web3 = new Web3(new Web3.providers.HttpProvider(provider, options))
 const contractAddress = '0x411566d8419C4a69140cb5AF47bf2Da074C19155';
 const contract = new web3.eth.Contract(abi, contractAddress);
 
-
-// Bob's Address - Sender
-const addressBob = '0x6c9ce229253612b91b148f8173ce835202ae334a';
-const privKeyBob = '0x1d69431b3c2380c7cb8fad628415ae167d94ce3617c127510ab6944aaaab5908';
-const account = web3.eth.accounts.privateKeyToAccount(privKeyBob);
+// Issuer's Account
+const privKey = '0xbefd5c99fc32a8080126d6963097799d16ceec4d9b4c0c2247189519ebf7151d';
+const account = web3.eth.accounts.privateKeyToAccount(privKey);
 const Wallet = web3.eth.accounts.wallet.add(account);
-const addressFrom = addressBob;
+const addressFrom = account.address;
 
 // Alice's Address - Recipient
 const addressAlice = '0x2462c740ef43aa7e251aff3470f5969af2bd8106';
-const addressTo = addressAlice;
+
+// Bob's Address - Sender
+const addressBob = '0x6c9ce229253612b91b148f8173ce835202ae334a';
+
+// parameter
+let estimatedGas;
+let txnCount;
+let receipt;
 
 const main = async () => {
     try {
-        const estimatedGas = await contract.methods.transfer(addressTo, '5000').estimateGas({
+        estimatedGas = await contract.methods.transfer(addressAlice, '5000000').estimateGas({
                                 from: addressFrom,
                                 gas: 0
                             });
-        const txnCount = await web3.eth.getTransactionCount(addressFrom, "pending")
-        const receipt = await contract.methods.transfer(addressTo, '5000').send({
+        txnCount = await web3.eth.getTransactionCount(addressFrom, "pending")
+        receipt = await contract.methods.transfer(addressAlice, '5000000').send({
             nonce: txnCount,
             gasPrice: 0,
             gasLimit: estimatedGas,
             from: addressFrom,
             to : contractAddress
         });
+        console.log(`Receipt info:  ${JSON.stringify(receipt.events, null, '\t')}`);
+        estimatedGas = await contract.methods.transfer(addressBob, '5000000').estimateGas({
+                                from: addressFrom,
+                                gas: 0
+                            });
+        txnCount = await web3.eth.getTransactionCount(addressFrom, "pending")
+        receipt = await contract.methods.transfer(addressBob, '5000000').send({
+            nonce: txnCount,
+            gasPrice: 0,
+            gasLimit: estimatedGas,
+            from: addressFrom,
+            to : contractAddress
+        })
         console.log(`Receipt info:  ${JSON.stringify(receipt.events, null, '\t')}`);
     } catch (err) {
         console.log(err);

@@ -3,15 +3,14 @@ const path = require("path");
 const Web3 = require("web3");
 const async = require('async')
 
-// const ABI = JSON.parse(fs.readFileSync(path.join(__dirname,'./build/contracts/BatteryNFT.json'), 'utf-8'));
-const ABI = JSON.parse(fs.readFileSync(path.join(__dirname,'./BatteryNFT.json'), 'utf-8'));
+const ABI = JSON.parse(fs.readFileSync(path.join(__dirname,'./build/contracts/BatteryNFT.json'), 'utf-8'));
 const abi = ABI.abi;
 const bytecode = ABI.bytecode;
 
 // web3 initialization - must point to the HTTP JSON-RPC endpoint
-const provider = 'https://besutest.chainz.network';
+const provider = 'https://besu.chainz.network';
 
-const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJwZXJtaXNzaW9ucyI6WyJ3ZWIzOioiLCJuZXQ6KiIsImV0aDoqIiwiZGVidWc6KiIsInR4cG9sOioiLCJlZWE6KiJdLCJleHAiOjE2MDUzMzUwOTZ9.xO3G29-45nokWAnLHVGEsfvECKLqpY4ZBVh8J_8eGNgPRstRd8D_aHouUGKWmv5_rRSEKsqun8uoIFflE-sMCcqEnUKhZusL2VqH3DghQ3iW--pxTTWyKJyXboXnX6XtPqChMtxqCSo_lro-FpcqdYU_S1f3Wv8LUgW-Com_4V3vhZ4X6DvsUyGOK7OUNq35148XH2UaIyDNvvWkqNvm1YD5lPoVS5ndB0IqbGTHZ7EXXRxwEKTYJtp2Ha2XPcJpX-JwSglqmPqCVcCNLVz2nV_hOtyPqGypx_KngE2v33LgGb0ud2QUN2fZWm93pNGv-zbSeZ5RViipjDJbxrl4kg";
+const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJwZXJtaXNzaW9ucyI6WyJuZXQ6KiIsImV0aDoqIiwiZGVidWc6KiIsInR4cG9vbDoqIiwiZWVhOioiXSwiZXhwIjoxNjA3MTQ4MjM0LCJ0ZWFtIjoiMDkifQ.xvVsyGQBD_BKNSleATF6i7vvGOzBMQdloSBLuA66-2OfO1bi-KUrisAWJ2QOK0RicfAb_heIE_FdSqusfqLR6oIqaTbfq6KDprMcJO5rMGKPcYA2btHteYZ9dVd8Cesnz1ZUvOfLr9_KoVYzAcHwIqik_Jaya9wgAw4dVnr5-gA_jiCwoy8EUAeL67OUC48cCukYj7zAdMmYZ2eaMLh5v_DxNJggUuFazLRKBPPTqHFmqG_ppq5ziJg4EmtLCeEDoO9aehrySLN_bQu2Dhu3MYMdrXUpFTrjXRx6KDI8GFoD5SnloGKGdzAY3HosvwpVf9KzLkothYEUHdI5wRCyow";
 
 var options = {
     headers: [{name:"Authorization", value: "Bearer " + token}]
@@ -19,10 +18,7 @@ var options = {
 var web3 = new Web3(new Web3.providers.HttpProvider(provider, options))
 
 // Smartcontract Object 
-// const contractAddress = '0x372E5b6D8852BC12B5c5B1729C0aB3F8a869dcb8';
-// const contractAddress = '0x88760a3f25cA992153A19fb15f123B1CbFe6A6aD';
-// const contractAddress = '0xc29166De1f5598d3f05f94F714a11Aa5794A7A53';
-const contractAddress = '0xfB62a2705d77E3a932CF6452af4b48Fe3079Acd6';
+const contractAddress = '0x80ec4DD4aF52fA70c2073a72888888d78551F30c';
 const contract = new web3.eth.Contract(abi, contractAddress);
 
 
